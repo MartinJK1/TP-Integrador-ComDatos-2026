@@ -54,12 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const lonHuff = calcularLongitudPromedio(probabilidades, codigosHuffman);
             const lonShan = calcularLongitudPromedio(probabilidades, codigosShannon);
 
-            // 7. Actualizamos tabla estática (Asegurate que estos IDs existan en tu HTML)
+            // 7. Actualizamos tabla estática
             document.getElementById('Longitud-Huffman').textContent = "Long: " + lonHuff.toFixed(2);
             document.getElementById('Longitud-Shannon').textContent = "Long: " + lonShan.toFixed(2);
             document.getElementById('Eficiencia-Huffman').textContent = "Ef: " + (entropia / lonHuff).toFixed(2);
             document.getElementById('Eficiencia-Shannon').textContent = "Ef: " + (entropia / lonShan).toFixed(2);
 
+        
+            // Calculamos la tasa (L_avg / 8 bits de ASCII original)
+            const tasaHuff = lonHuff / 8;
+            const tasaShan = lonShan / 8;
+
+            document.getElementById('Tasa-Huffman').textContent = "Tasa: " + tasaHuff.toFixed(2);
+            document.getElementById('Tasa-Shannon').textContent = "Tasa: " + tasaShan.toFixed(2);
+            // ----------------------------------------------
             // 8. Mensaje codificado
             let textoCodificado = "";
             for (let i = 0; i < textoOriginal.length; i++) {
