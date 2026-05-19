@@ -10,34 +10,40 @@
     <script src="TablaDinámica.js"></script>    
     <script src="Frecuencia.js"></script>
     <script type="module" src="EficienciaShannon-Fano.js"></script>
+    <script type="module" src="Main.js"></script> 
 </head>
 <body>
     <header>
         <h1>Codificación de datos<br>Huffman y Shannon-Fano</h1>
     </header>
+    
     <textarea id="contenido" class="caja-texto" placeholder="Ingrese el texto a codificar..." style="resize: none;"></textarea>
+    
     <button class="boton1" onclick="mostrarInput()">Cargar<br>archivo .txt</button>
     <div id="caja-input" class="caja" style="display: none;">
         <input type="file" id="archivo" accept=".txt">
         <button onclick="cargarArchivo()">Subir archivo</button>
         <button onclick="ocultarInput()">Cerrar</button>
     </div>
-    <button class="boton2" onclick="calcularFrecuencia()" onclick="calcularEficienciaShannonFano()">Analizar texto</button>
+    
+    <button class="boton2" id="btn-analizar">Analizar texto</button>
+    
     <div class="container">
         <div class="dinamic-table-container">
             <table class="dinamic-table-header">
                 <tr>
-                    <th colspan="2" id="super-th">Tabla de frecuencia de símbolos</th>
+                    <th colspan="4" id="super-th">Tabla de frecuencia y códigos</th>
                 </tr>
                 <tr>
                     <th>Símbolo</th>
                     <th>Frecuencia</th>
+                    <th>Huffman</th>
+                    <th>Shannon-Fano</th>
                 </tr>
             </table>
             <table class="dinamic-table" id="tabla-dinamica">
                 <tbody id="table-body">
-                    <!-- Aquí se agregarán las filas vacías al inicio -->
-                </tbody>         
+                    </tbody>         
             </table>
         </div>
         <div class="static-table-container">
@@ -49,12 +55,22 @@
                     </tr>
                 </thead>
                 <tbody>                    
-                    <tr><td>Tasa de comprensión:</td><td>Tasa de comprensión:</td></tr>
+                    <tr><td>Tasa de compresión:</td><td>Tasa de compresión:</td></tr>
                     <tr><td id="Longitud-Shannon-Fano">Longitud promedio:</td><td>Longitud promedio:</td></tr>
                     <tr><td id="Eficiencia-Shannon-Fano">Eficiencia:</td><td>Eficiencia:</td></tr>
                 </tbody>
             </table>                
         </div>
     </div>        
+
+    <div class="caja" id="caja-decodificacion">
+        <h3 style="margin: 0; color: #333;">Mensaje codificado</h3>
+        <textarea id="texto-codificado" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
+        
+        <button id="btn-decodificar" class="boton1" style="margin: 10px 0; width: fit-content;">Decodificar</button>
+        
+        <h3 style="margin: 0; color: #333;">Texto recuperado</h3>
+        <textarea id="texto-recuperado" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
+    </div>
 </body>
 </html>

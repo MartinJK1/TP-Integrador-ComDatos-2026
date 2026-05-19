@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const filasIniciales = 8;
     for (let i = 0; i < filasIniciales; i++) {
         let row = document.createElement("tr");
-        row.innerHTML = `<td></td><td></td>`;
+        row.innerHTML = `<td></td><td></td><td></td><td></td>`;
         tableBody.appendChild(row);
     }
 
