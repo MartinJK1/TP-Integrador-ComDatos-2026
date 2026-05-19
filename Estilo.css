@@ -149,9 +149,10 @@ tr {
     border-collapse: collapse;
     gap: 0px;
 }
-.dinamic-table-header th {
-    width: 50%;
-    border: 2px solid #949494;
+.dinamic-table-header th, .dinamic-table td {
+    width: 25%; /* 100% dividido en 4 columnas */
+    word-wrap: break-word; /* Para que el texto largo salte de línea */
+    font-size: 10px; /* Un poquito más chico para que entre todo */
 }
 .static-table tr {
     padding: 10px;
@@ -161,4 +162,32 @@ tr {
 }
 #super-th {
     border-top: 0;
+}
+td {
+    background-color: rgb(231, 231, 231) !important;
+}
+/* Arreglo de anchos para que la tabla no se aplaste */
+.dinamic-table-header th {
+    width: 25% !important; /* 4 columnas de 25% cada una */
+    padding: 5px;
+    font-size: 11px;
+}
+
+/* Forzamos el color claro en todas las celdas */
+td {
+    background-color: rgb(231, 231, 231) !important;
+    color: black !important;
+    width: 25%;
+}
+
+/* Ampliamos el contenedor para que no se vea cortado */
+.container {
+    width: 95% !important; 
+    gap: 20px;
+}
+.dinamic-table-container {
+    width: 60%; /* Damos más espacio a la tabla de símbolos */
+}
+.static-table-container {
+    width: 35%; /* La tabla de resultados ocupa el resto */
 }

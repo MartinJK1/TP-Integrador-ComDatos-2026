@@ -9,7 +9,6 @@
     <script src="Botones.js"></script>
     <script src="TablaDinámica.js"></script>    
     <script src="Frecuencia.js"></script>
-    <script type="module" src="Main.js"></script>
     <script type="module" src="Main.js"></script> 
 </head>
 <body>
@@ -50,14 +49,23 @@
             <table class="static-table">
                 <thead>
                     <tr>
-                        <th>Algoritmo<br>Huffman</th>
-                        <th>Algoritmo<br>Shannon-Fano</th>
+                        <th>Algoritmo Huffman</th>
+                        <th>Algoritmo Shannon-Fano</th>
                     </tr>
                 </thead>
                 <tbody>                    
-                    <tr><td>Tasa de compresión:</td><td>Tasa de compresión:</td></tr>
-                    <tr><td id="Longitud-Shannon-Fano">Longitud promedio:</td><td>Longitud promedio:</td></tr>
-                    <tr><td id="Eficiencia-Shannon-Fano">Eficiencia:</td><td>Eficiencia:</td></tr>
+                    <tr>
+                        <td id="Tasa-Huffman">Tasa: -</td>
+                        <td id="Tasa-Shannon">Tasa: -</td>
+                    </tr>
+                    <tr>
+                        <td id="Longitud-Huffman">Long: -</td>
+                        <td id="Longitud-Shannon">Long: -</td>
+                    </tr>
+                    <tr>
+                        <td id="Eficiencia-Huffman">Eficiencia: -</td>
+                        <td id="Eficiencia-Shannon">Eficiencia: -</td>
+                    </tr>
                 </tbody>
             </table>                
         </div>
