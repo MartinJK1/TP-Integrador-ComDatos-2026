@@ -9,26 +9,28 @@ function calcularFrecuencia() {
 
 function actualizarTabla(frecuencia) {
     const tbody = document.querySelector('#tabla-dinamica tbody');
-    tbody.innerHTML = ''; // Limpia la tabla antes de actualizar
+    tbody.innerHTML = ''; // Limpia la tabla
 
     const entries = Object.entries(frecuencia)
-        .sort((a, b) => b[1] - a[1]); // Ordena por frecuencia descendente
+        .sort((a, b) => b[1] - a[1]); 
 
-    // Rellenar la tabla con los datos reales
     entries.forEach(([char, count]) => {
         const row = tbody.insertRow();
-        row.insertCell().textContent = char;
-        row.insertCell().textContent = count;
+        row.insertCell().textContent = char;   // Columna 1
+        row.insertCell().textContent = count;  // Columna 2
+        row.insertCell().textContent = '';     // Columna 3 (Huffman)
+        row.insertCell().textContent = '';     // Columna 4 (Shannon-Fano)
     });
 
-    // Completar con filas vacías si hay menos de 8
     const filasActuales = entries.length;
     if (filasActuales < 8) {
         for (let i = filasActuales; i < 8; i++) {
             const row = tbody.insertRow();
             row.insertCell().textContent = '';
             row.insertCell().textContent = '';
+            row.insertCell().textContent = '';
+            row.insertCell().textContent = '';
         }
     }
 }
-
+window.calcularFrecuencia = calcularFrecuencia; // Para que Main.js pueda acceder
