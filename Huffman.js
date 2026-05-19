@@ -8,8 +8,9 @@ export function generarCodigosHuffman(simbolos, probabilidades) {
     }));
 
     // Si solo hay un símbolo, le asignamos '0'
-    if (nodos.length === 1) return [ { simbolo: nodos[0].simbolo, codigo: '0' } ];
-
+// Si solo hay un símbolo, le asignamos '0'
+    if (nodos.length === 1) return ['0']; // Cambiamos el retorno a un array de strings
+    
     // Mientras haya más de un nodo, combinamos los dos de menor probabilidad
     while (nodos.length > 1) {
         nodos.sort((a, b) => a.probabilidad - b.probabilidad); // Ordenar de menor a mayor
