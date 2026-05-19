@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Integrador</title>
+    <link rel="stylesheet" href="Estilo.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Botones.js"></script>
+    <script src="TablaDinámica.js"></script>    
+    <script src="Frecuencia.js"></script>
+    <script type="module" src="EficienciaShannon-Fano.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Codificación de datos<br>Huffman y Shannon-Fano</h1>
+    </header>
+    <textarea id="contenido" class="caja-texto" placeholder="Ingrese el texto a codificar..." style="resize: none;"></textarea>
+    <button class="boton1" onclick="mostrarInput()">Cargar<br>archivo .txt</button>
+    <div id="caja-input" class="caja" style="display: none;">
+        <input type="file" id="archivo" accept=".txt">
+        <button onclick="cargarArchivo()">Subir archivo</button>
+        <button onclick="ocultarInput()">Cerrar</button>
+    </div>
+    <button class="boton2" onclick="calcularFrecuencia()" onclick="calcularEficienciaShannonFano()">Analizar texto</button>
+    <div class="container">
+        <div class="dinamic-table-container">
+            <table class="dinamic-table-header">
+                <tr>
+                    <th colspan="2" id="super-th">Tabla de frecuencia de símbolos</th>
+                </tr>
+                <tr>
+                    <th>Símbolo</th>
+                    <th>Frecuencia</th>
+                </tr>
+            </table>
+            <table class="dinamic-table" id="tabla-dinamica">
+                <tbody id="table-body">
+                    <!-- Aquí se agregarán las filas vacías al inicio -->
+                </tbody>         
+            </table>
+        </div>
+        <div class="static-table-container">
+            <table class="static-table">
+                <thead>
+                    <tr>
+                        <th>Algoritmo<br>Huffman</th>
+                        <th>Algoritmo<br>Shannon-Fano</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    <tr><td>Tasa de comprensión:</td><td>Tasa de comprensión:</td></tr>
+                    <tr><td id="Longitud-Shannon-Fano">Longitud promedio:</td><td>Longitud promedio:</td></tr>
+                    <tr><td id="Eficiencia-Shannon-Fano">Eficiencia:</td><td>Eficiencia:</td></tr>
+                </tbody>
+            </table>                
+        </div>
+    </div>        
+</body>
+</html>
