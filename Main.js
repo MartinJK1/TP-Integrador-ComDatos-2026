@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let diccionarioHuffman = {};
 
     btnAnalizar.addEventListener("click", () => {
+        console.log("¡El botón Analizar funciona!"); // AGREGÁ ESTO PARA PROBAR
+        
         // 1. Calculamos frecuencias
         window.calcularFrecuencia(); 
         
