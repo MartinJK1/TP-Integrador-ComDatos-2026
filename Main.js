@@ -9,18 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnDecodificar = document.getElementById("btn-decodificar");
 
     let diccionarioHuffman = {};
+    let diccionarioShannon = {};
 
     btnAnalizar.addEventListener("click", () => {
+        const textoOriginal = document.getElementById('contenido').value;
+        
+        // CORRECCIÓN: Si la caja está vacía, frenamos y avisamos al usuario
+        if (textoOriginal.length === 0) {
+            alert("Por favor, ingrese un texto para codificar.");
+            return;
+        }
+
         // 1. Calculamos frecuencias
         window.calcularFrecuencia(); 
         
         // 2. Esperamos unos milisegundos para asegurar que el DOM se actualizó
         setTimeout(() => {
             const tbody = document.querySelector('#tabla-dinamica tbody');
-            const textoOriginal = document.getElementById('contenido').value;
             const totalCaracteres = textoOriginal.length;
-
-            if (totalCaracteres === 0) return;
 
             const simbolos = [];
             const probabilidades = [];
@@ -41,10 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // 5. Inyectamos códigos en la tabla
             diccionarioHuffman = {}; 
+            diccionarioShannon = {}; 
             for (let i = 0; i < simbolos.length; i++) {
                 tbody.rows[i].cells[2].textContent = codigosHuffman[i];
                 tbody.rows[i].cells[3].textContent = codigosShannon[i];
                 diccionarioHuffman[simbolos[i]] = codigosHuffman[i]; 
+                diccionarioShannon[simbolos[i]] = codigosShannon[i]; 
             }
 
             // 6. Cálculos de eficiencia
@@ -60,26 +68,32 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('Eficiencia-Huffman').textContent = "Ef: " + (entropia / lonHuff).toFixed(2);
             document.getElementById('Eficiencia-Shannon').textContent = "Ef: " + (entropia / lonShan).toFixed(2);
 
-        
             // Calculamos la tasa (L_avg / 8 bits de ASCII original)
             const tasaHuff = lonHuff / 8;
             const tasaShan = lonShan / 8;
 
             document.getElementById('Tasa-Huffman').textContent = "Tasa: " + tasaHuff.toFixed(2);
             document.getElementById('Tasa-Shannon').textContent = "Tasa: " + tasaShan.toFixed(2);
-            // ----------------------------------------------
-            // 8. Mensaje codificado
-            let textoCodificado = "";
+            
+            // 8. Mensaje codificado (Llenamos las dos cajas)
+            let textoCodificadoHuffman = "";
+            let textoCodificadoShannon = "";
             for (let i = 0; i < textoOriginal.length; i++) {
-                textoCodificado += (diccionarioHuffman[textoOriginal[i]] || "");
+                textoCodificadoHuffman += (diccionarioHuffman[textoOriginal[i]] || "");
+                textoCodificadoShannon += (diccionarioShannon[textoOriginal[i]] || "");
             }
-            document.getElementById('texto-codificado').value = textoCodificado;
+            document.getElementById('texto-codificado-huffman').value = textoCodificadoHuffman;
+            document.getElementById('texto-codificado-shannon').value = textoCodificadoShannon;
         }, 100); 
     });
 
     // 9. Lógica del botón DECODIFICAR
     btnDecodificar.addEventListener("click", () => {
-        const textoCodificado = document.getElementById('texto-codificado').value;
+        const textoCodificado = document.getElementById('texto-codificado-huffman').value;
+        
+        // Evitamos que intente decodificar si no hay nada
+        if (textoCodificado === "") return;
+
         const dictInverso = {};
         for (let char in diccionarioHuffman) {
             dictInverso[diccionarioHuffman[char]] = char;

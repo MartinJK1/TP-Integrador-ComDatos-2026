@@ -72,13 +72,17 @@
     </div>        
 
     <div class="caja" id="caja-decodificacion">
-        <h3 style="margin: 0; color: #333;">Mensaje codificado</h3>
-        <textarea id="texto-codificado" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
-        
-        <button id="btn-decodificar" class="boton1" style="margin: 10px 0; width: fit-content;">Decodificar</button>
-        
-        <h3 style="margin: 0; color: #333;">Texto recuperado</h3>
-        <textarea id="texto-recuperado" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
-    </div>
+            <h3 style="margin: 0; color: #333;">Mensaje codificado (Huffman)</h3>
+            <textarea id="texto-codificado-huffman" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
+            
+            <h3 style="margin: 15px 0 5px 0; color: #333;">Mensaje codificado (Shannon-Fano)</h3>
+            <textarea id="texto-codificado-shannon" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
+            
+            <!-- Aclaramos en el botón que decodificamos usando la cadena de Huffman -->
+            <button id="btn-decodificar" class="boton1" style="margin: 10px 0; width: fit-content;">Decodificar (usando Huffman)</button>
+            
+            <h3 style="margin: 0; color: #333;">Texto recuperado</h3>
+            <textarea id="texto-recuperado" class="caja-texto" style="margin: 0; width: auto; background-color: #fff;" readonly></textarea>
+        </div>
 </body>
 </html>
